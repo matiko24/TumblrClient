@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmCross" Version="8.0.2" />
+    <PackageReference Include="Refit" Version="6.3.2" />
+    <PackageReference Include="Refit.Newtonsoft.Json" Version="6.3.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Infrastructure\" />
+    <None Remove="Refit" />
+    <None Remove="Refit.HttpClientFactory" />
+    <None Remove="Tumblr.NetStandard" />
+    <None Remove="Refit.Newtonsoft.Json" />
+    <None Remove="Models\" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Utils\" />
+    <None Remove="Converters\" />
+    <None Remove="Acr.UserDialogs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Models\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Converters\" />
+  </ItemGroup>
+</Project>
