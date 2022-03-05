@@ -156,6 +156,27 @@
       <DependentUpon>Views\Cells\PostViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Sources\PostsSource.cs" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\1024.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\76.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\60.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\58.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\167.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\120-1.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\29.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\120.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\40-1.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\80-1.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\20.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\40-2.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\180.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\80.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\40.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\58-1.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\87.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\152.png" />
+    <ImageAsset Include="Resources\Media.xcassets\Colors\Contents.json" />
+    <ImageAsset Include="Resources\Media.xcassets\Colors\AppBlue.colorset\Contents.json" />
+    <Compile Include="Utils\TextSizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -239,6 +260,7 @@
   <ItemGroup>
     <Folder Include="Views\Cells\" />
     <Folder Include="Sources\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
