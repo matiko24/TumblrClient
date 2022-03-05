@@ -12,6 +12,12 @@ namespace TumblrClient.iOS.Views.Cells
 	partial class PostViewCell
 	{
 		[Outlet]
+		UIKit.UIButton Like { get; set; }
+
+		[Outlet]
+		UIKit.UIButton Share { get; set; }
+
+		[Outlet]
 		UIKit.UILabel Text { get; set; }
 		
 		void ReleaseDesignerOutlets ()
@@ -19,6 +25,16 @@ namespace TumblrClient.iOS.Views.Cells
 			if (Text != null) {
 				Text.Dispose ();
 				Text = null;
+			}
+
+			if (Share != null) {
+				Share.Dispose ();
+				Share = null;
+			}
+
+			if (Like != null) {
+				Like.Dispose ();
+				Like = null;
 			}
 		}
 	}

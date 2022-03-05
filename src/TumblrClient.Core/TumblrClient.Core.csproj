@@ -11,6 +11,7 @@
     <PackageReference Include="Refit.Newtonsoft.Json" Version="6.3.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Infrastructure\" />
@@ -23,6 +24,7 @@
     <None Remove="Utils\" />
     <None Remove="Converters\" />
     <None Remove="Acr.UserDialogs" />
+    <None Remove="Xamarin.Essentials" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\" />

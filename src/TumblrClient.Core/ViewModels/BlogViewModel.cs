@@ -1,3 +1,4 @@
+using System.Linq;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using TumblrClient.Core.Models;
@@ -11,7 +12,7 @@ namespace TumblrClient.Core.ViewModels
 
         public string Title => _blogWithPosts.Blog.Name;
 
-        public MvxObservableCollection<Post> ItemsSource { get; set; }
+        public MvxObservableCollection<PostViewModel> ItemsSource { get; set; }
 
         public BlogViewModel(IMvxNavigationService navigationService)
         {
@@ -21,7 +22,9 @@ namespace TumblrClient.Core.ViewModels
         public override void Prepare(BlogWithPosts parameter)
         {
             _blogWithPosts = parameter;
-            ItemsSource = new MvxObservableCollection<Post>(_blogWithPosts.Posts);
+
+            var postsViewModels = _blogWithPosts.Posts.Select(p => new PostViewModel(p));
+            ItemsSource = new MvxObservableCollection<PostViewModel>(postsViewModels);
         }
 
         public void Close()

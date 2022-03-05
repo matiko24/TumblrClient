@@ -15,5 +15,11 @@ namespace TumblrClient.Core.Models
 
         [JsonProperty("body")]
         public string Body { get; set; }
+
+        [JsonProperty("post_url")]
+        public string Url { get; set; }
+
+        [JsonProperty("liked")]
+        public bool Liked { get; set; }
     }
 }
