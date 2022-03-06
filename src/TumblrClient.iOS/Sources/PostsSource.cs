@@ -17,6 +17,7 @@ namespace TumblrClient.iOS.Sources
             tableView.RegisterNibForCellReuse(PostViewCell.Nib, PostViewCell.Key);
             tableView.RegisterNibForCellReuse(PhotoPostViewCell.Nib, PhotoPostViewCell.Key);
             tableView.RegisterNibForCellReuse(QuotePostViewCell.Nib, QuotePostViewCell.Key);
+            tableView.RegisterNibForCellReuse(LinkPostViewCell.Nib, LinkPostViewCell.Key);
         }
 
         protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
@@ -27,7 +28,7 @@ namespace TumblrClient.iOS.Sources
             {
                 PostType.Text => PostViewCell.Key,
                 PostType.Quote => QuotePostViewCell.Key,
-                PostType.Link => "link",
+                PostType.Link => LinkPostViewCell.Key,
                 PostType.Answer => "answer",
                 PostType.Video => "video",
                 PostType.Audio => "audio",
@@ -46,10 +47,8 @@ namespace TumblrClient.iOS.Sources
 
             if(postType == PostType.Text)
             {
-                var textPost = postViewModel.Post as TextPost;
-                var font = UIFont.SystemFontOfSize(17, UIFontWeight.Regular);
-                var widht = TableView.Frame.Width - 32;
-                var textheight = TextSizer.GetTextHeight(textPost.Title, widht, font);
+                var textPost = (postViewModel.Post as TextPost);
+                var textheight = GetTextheight(textPost.Title);
 
                 return 90 + textheight;
             }
@@ -60,9 +59,14 @@ namespace TumblrClient.iOS.Sources
             else if(postType == PostType.Quote)
             {
                 var quotePost = postViewModel.Post as QuotePost;
-                var font = UIFont.SystemFontOfSize(17, UIFontWeight.Regular);
-                var widht = TableView.Frame.Width - 32;
-                var textheight = TextSizer.GetTextHeight(quotePost.Text, widht, font);
+                var textheight = GetTextheight(quotePost.Text);
+
+                return 90 + textheight;
+            }
+            else if(postType == PostType.Link)
+            {
+                var linkPost = postViewModel.Post as LinkPost;
+                var textheight = GetTextheight(linkPost.LinkUrl);
 
                 return 90 + textheight;
             }
@@ -70,6 +74,14 @@ namespace TumblrClient.iOS.Sources
             {
                 return 200;
             }
+        }
+
+        private nfloat GetTextheight(string text)
+        {
+            var font = UIFont.SystemFontOfSize(17, UIFontWeight.Regular);
+            var widht = TableView.Frame.Width - 32;
+
+            return TextSizer.GetTextHeight(text, widht, font);
         }
     }
 }
