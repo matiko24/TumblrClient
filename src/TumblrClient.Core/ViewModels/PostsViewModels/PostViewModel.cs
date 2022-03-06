@@ -1,19 +1,22 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using TumblrClient.Core.Models.Posts;
+using TumblrClient.Core.Utils;
 using Xamarin.Essentials;
 
-namespace TumblrClient.Core.ViewModels
+namespace TumblrClient.Core.ViewModels.PostsViewModels
 {
-    public class PostViewModel<T> : MvxViewModel where T : BasePost
+    public abstract class PostViewModel : MvxViewModel
     {
-        public T Post { get; set; }
+        public bool Liked { get; set; }
+        public string Url { get; private set; }
+        public PostType Type { get; private set; }
 
         public IMvxCommand ShareCommand => new MvxAsyncCommand(async () =>
         {
             await Share.RequestAsync(new ShareTextRequest
             {
-                Uri = Post.Url,
+                Uri = Url,
                 Title = "Udostępnij post"
             });
         });
@@ -22,9 +25,11 @@ namespace TumblrClient.Core.ViewModels
         {
         });
 
-        public PostViewModel(T post)
+        public PostViewModel(Post post)
         {
-            Post = post;
+            Url = post.Url;
+            Liked = post.Liked;
+            Type = PostTypeExtension.ToPostType(post.Type);
         }
     }
 }

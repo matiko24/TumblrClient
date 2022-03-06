@@ -1,6 +1,6 @@
 ﻿namespace TumblrClient.Core.Models.Posts
 {
-    public class ChatPost : BasePost
+    public class ChatPost : Post
     {
     }
 }

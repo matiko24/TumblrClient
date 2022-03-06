@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace TumblrClient.Core.Models.Posts
 {
-    public abstract class BasePost
+    public abstract class Post
     {
         [JsonProperty("blog_name")]
         public string BlogName { get; set; }

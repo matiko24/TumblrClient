@@ -9,7 +9,7 @@ namespace TumblrClient.Core.Utils
     {
         public override bool CanConvert(Type objectType)
         {
-            return typeof(BasePost).IsAssignableFrom(objectType);
+            return typeof(Post).IsAssignableFrom(objectType);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -18,7 +18,7 @@ namespace TumblrClient.Core.Utils
             var type = jObject.GetValue("type");
             var postType = PostTypeExtension.ToPostType(type.ToString());
 
-            BasePost postObject = postType switch
+            Post postObject = postType switch
             {
                 PostType.Text => new TextPost(),
                 PostType.Link => new LinkPost(),

@@ -1,9 +1,8 @@
 using System;
 using Foundation;
 using MvvmCross.Platforms.Ios.Binding.Views;
-using TumblrClient.Core.Models.Posts;
 using TumblrClient.Core.Utils;
-using TumblrClient.Core.ViewModels;
+using TumblrClient.Core.ViewModels.PostsViewModels;
 using TumblrClient.iOS.Utils;
 using TumblrClient.iOS.Views.Cells;
 using UIKit;
@@ -22,9 +21,8 @@ namespace TumblrClient.iOS.Sources
 
         protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
         {
-            var basePostViewModel = GetItemAt(indexPath) as PostViewModel<BasePost>;
-            var postType = PostTypeExtension.ToPostType(basePostViewModel.Post.Type);
-            var cellIdentifier = postType switch
+            var postViewModel = GetItemAt(indexPath) as PostViewModel;
+            var cellIdentifier = postViewModel.Type switch
             {
                 PostType.Text => PostViewCell.Key,
                 PostType.Quote => QuotePostViewCell.Key,
@@ -42,13 +40,13 @@ namespace TumblrClient.iOS.Sources
 
         public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
         {
-            var postViewModel = GetItemAt(indexPath) as PostViewModel<BasePost>;
-            var postType = PostTypeExtension.ToPostType(postViewModel.Post.Type);
+            var postViewModel = GetItemAt(indexPath) as PostViewModel;
+            var postType = postViewModel.Type;
 
             if(postType == PostType.Text)
             {
-                var textPost = (postViewModel.Post as TextPost);
-                var textheight = GetTextheight(textPost.Title);
+                var textPostViewModel = postViewModel as TextPostViewModel;
+                var textheight = GetTextheight(textPostViewModel.Text);
 
                 return 90 + textheight;
             }
@@ -58,15 +56,15 @@ namespace TumblrClient.iOS.Sources
             }
             else if(postType == PostType.Quote)
             {
-                var quotePost = postViewModel.Post as QuotePost;
-                var textheight = GetTextheight(quotePost.Text);
+                var quotePostViewModel = postViewModel as QuotePostViewModel;
+                var textheight = GetTextheight(quotePostViewModel.Quote);
 
                 return 90 + textheight;
             }
             else if(postType == PostType.Link)
             {
-                var linkPost = postViewModel.Post as LinkPost;
-                var textheight = GetTextheight(linkPost.LinkUrl);
+                var linkPostViewModel = postViewModel as LinkPostViewModel;
+                var textheight = GetTextheight(linkPostViewModel.LinkUrl);
 
                 return 90 + textheight;
             }

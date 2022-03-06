@@ -26,6 +26,7 @@
     <None Remove="Acr.UserDialogs" />
     <None Remove="Xamarin.Essentials" />
     <None Remove="Models\Posts\" />
+    <None Remove="ViewModels\PostsViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\" />
@@ -33,5 +34,6 @@
     <Folder Include="Utils\" />
     <Folder Include="Converters\" />
     <Folder Include="Models\Posts\" />
+    <Folder Include="ViewModels\PostsViewModels\" />
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ namespace TumblrClient.Core.Models
         public Blog Blog { get; set; }
 
         [JsonProperty("posts")]
-        public IEnumerable<BasePost> Posts { get; set; }
+        public IEnumerable<Post> Posts { get; set; }
 
         [JsonProperty("total_posts")]
         public long PostsNumber { get; set; }

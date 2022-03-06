@@ -2,7 +2,7 @@
 
 namespace TumblrClient.Core.Models.Posts
 {
-    public class VideoPost : BasePost
+    public class VideoPost : Post
     {
         [JsonProperty("embeded_code")]
         public string EmbededCode { get; set; }

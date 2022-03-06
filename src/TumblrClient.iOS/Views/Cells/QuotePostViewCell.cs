@@ -3,8 +3,7 @@ using CoreAnimation;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Binding.Views;
-using TumblrClient.Core.Models.Posts;
-using TumblrClient.Core.ViewModels;
+using TumblrClient.Core.ViewModels.PostsViewModels;
 using UIKit;
 
 namespace TumblrClient.iOS.Views.Cells
@@ -19,9 +18,9 @@ namespace TumblrClient.iOS.Views.Cells
         {
             this.DelayBind(() =>
             {
-                var set = this.CreateBindingSet<QuotePostViewCell, PostViewModel<QuotePost>>();
+                var set = this.CreateBindingSet<QuotePostViewCell, QuotePostViewModel>();
 
-                set.Bind(Text).For(v => v.Text).To(vm => vm.Post.Text);
+                set.Bind(Text).For(v => v.Text).To(vm => vm.Quote);
                 set.Bind(Share).To(vm => vm.ShareCommand);
 
                 set.Apply();
@@ -50,10 +49,10 @@ namespace TumblrClient.iOS.Views.Cells
 
             animation.AnimationStarted += (s1, e1) =>
             {
-                var postViewModel = DataContext as PostViewModel<BasePost>;
+                var postViewModel = DataContext as PostViewModel;
 
-                postViewModel.Post.Liked = !postViewModel.Post.Liked;
-                Like.TintColor = postViewModel.Post.Liked ? UIColor.Red : UIColor.DarkGray;
+                postViewModel.Liked = !postViewModel.Liked;
+                Like.TintColor = postViewModel.Liked ? UIColor.Red : UIColor.DarkGray;
             };
 
             Like.Layer.AddAnimation(animation, "pulse");

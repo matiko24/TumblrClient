@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace TumblrClient.Core.Models.Posts
 {
-    public class PhotoPost : BasePost
+    public class PhotoPost : Post
     {
         [JsonProperty("photos")]
         public IList<PhotoSet> Photoset { get; set; }

@@ -2,7 +2,7 @@
 
 namespace TumblrClient.Core.Models.Posts
 {
-    public class TextPost : BasePost
+    public class TextPost : Post
     {
         [JsonProperty("title")]
         public string Title { get; set; }
