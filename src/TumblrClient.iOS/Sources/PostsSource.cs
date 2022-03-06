@@ -16,6 +16,7 @@ namespace TumblrClient.iOS.Sources
         {
             tableView.RegisterNibForCellReuse(PostViewCell.Nib, PostViewCell.Key);
             tableView.RegisterNibForCellReuse(PhotoPostViewCell.Nib, PhotoPostViewCell.Key);
+            tableView.RegisterNibForCellReuse(QuotePostViewCell.Nib, QuotePostViewCell.Key);
         }
 
         protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
@@ -25,7 +26,7 @@ namespace TumblrClient.iOS.Sources
             var cellIdentifier = postType switch
             {
                 PostType.Text => PostViewCell.Key,
-                PostType.Quote => "quote",
+                PostType.Quote => QuotePostViewCell.Key,
                 PostType.Link => "link",
                 PostType.Answer => "answer",
                 PostType.Video => "video",
@@ -52,9 +53,22 @@ namespace TumblrClient.iOS.Sources
 
                 return 90 + textheight;
             }
-            else
+            else if(postType == PostType.Photo)
             {
                 return 400;
+            }
+            else if(postType == PostType.Quote)
+            {
+                var quotePost = postViewModel.Post as QuotePost;
+                var font = UIFont.SystemFontOfSize(17, UIFontWeight.Regular);
+                var widht = TableView.Frame.Width - 32;
+                var textheight = TextSizer.GetTextHeight(quotePost.Text, widht, font);
+
+                return 90 + textheight;
+            }
+            else
+            {
+                return 200;
             }
         }
     }

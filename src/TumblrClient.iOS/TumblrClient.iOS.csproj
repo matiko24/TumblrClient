@@ -182,6 +182,11 @@
     <Compile Include="Views\Cells\PhotoPostViewCell.designer.cs">
       <DependentUpon>Views\Cells\PhotoPostViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Cells\QuotePostViewCell.cs" />
+    <InterfaceDefinition Include="Views\Cells\QuotePostViewCell.xib" />
+    <Compile Include="Views\Cells\QuotePostViewCell.designer.cs">
+      <DependentUpon>Views\Cells\QuotePostViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
