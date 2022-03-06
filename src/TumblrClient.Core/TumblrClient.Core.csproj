@@ -12,6 +12,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+    <PackageReference Include="MvvmCross.Plugin.WebBrowser" Version="8.0.2" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Infrastructure\" />
@@ -27,6 +28,7 @@
     <None Remove="Xamarin.Essentials" />
     <None Remove="Models\Posts\" />
     <None Remove="ViewModels\PostsViewModels\" />
+    <None Remove="MvvmCross.Plugin.WebBrowser" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\" />
