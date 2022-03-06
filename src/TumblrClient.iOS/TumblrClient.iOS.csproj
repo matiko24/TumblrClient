@@ -177,6 +177,11 @@
     <ImageAsset Include="Resources\Media.xcassets\Colors\Contents.json" />
     <ImageAsset Include="Resources\Media.xcassets\Colors\AppBlue.colorset\Contents.json" />
     <Compile Include="Utils\TextSizer.cs" />
+    <Compile Include="Views\Cells\PhotoPostViewCell.cs" />
+    <InterfaceDefinition Include="Views\Cells\PhotoPostViewCell.xib" />
+    <Compile Include="Views\Cells\PhotoPostViewCell.designer.cs">
+      <DependentUpon>Views\Cells\PhotoPostViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -208,6 +213,9 @@
     </PackageReference>
     <PackageReference Include="Serilog.Sinks.Xamarin">
       <Version>0.2.0.64</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading">
+      <Version>2.4.11.982</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

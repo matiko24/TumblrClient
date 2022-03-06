@@ -1,6 +1,8 @@
 using System;
 using Foundation;
 using MvvmCross.Platforms.Ios.Binding.Views;
+using TumblrClient.Core.Models.Posts;
+using TumblrClient.Core.Utils;
 using TumblrClient.Core.ViewModels;
 using TumblrClient.iOS.Utils;
 using TumblrClient.iOS.Views.Cells;
@@ -13,21 +15,47 @@ namespace TumblrClient.iOS.Sources
         public PostsSource(UITableView tableView) : base(tableView)
         {
             tableView.RegisterNibForCellReuse(PostViewCell.Nib, PostViewCell.Key);
+            tableView.RegisterNibForCellReuse(PhotoPostViewCell.Nib, PhotoPostViewCell.Key);
         }
 
         protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
         {
-            return tableView.DequeueReusableCell(PostViewCell.Key);
+            var basePostViewModel = GetItemAt(indexPath) as PostViewModel<BasePost>;
+            var postType = PostTypeExtension.ToPostType(basePostViewModel.Post.Type);
+            var cellIdentifier = postType switch
+            {
+                PostType.Text => PostViewCell.Key,
+                PostType.Quote => "quote",
+                PostType.Link => "link",
+                PostType.Answer => "answer",
+                PostType.Video => "video",
+                PostType.Audio => "audio",
+                PostType.Photo => PhotoPostViewCell.Key,
+                PostType.Chat => "chat",
+                _ => string.Empty
+            };
+
+            return tableView.DequeueReusableCell(cellIdentifier);
         }
 
         public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
         {
-            var item = GetItemAt(indexPath) as PostViewModel;
-            var font = UIFont.SystemFontOfSize(17, UIFontWeight.Regular);
-            var widht = TableView.Frame.Width - 32;
-            var textheight = TextSizer.GetTextHeight(item.Post.Title, widht, font);
+            var postViewModel = GetItemAt(indexPath) as PostViewModel<BasePost>;
+            var postType = PostTypeExtension.ToPostType(postViewModel.Post.Type);
 
-            return 90 + textheight;
+            if(postType == PostType.Text)
+            {
+                var textPost = postViewModel.Post as TextPost;
+                var font = UIFont.SystemFontOfSize(17, UIFontWeight.Regular);
+                var widht = TableView.Frame.Width - 32;
+                var textheight = TextSizer.GetTextHeight(textPost.Title, widht, font);
+
+                return 90 + textheight;
+            }
+            else
+            {
+                return 400;
+            }
         }
     }
 }
