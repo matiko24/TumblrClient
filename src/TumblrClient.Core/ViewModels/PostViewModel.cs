@@ -1,13 +1,13 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using TumblrClient.Core.Models;
+using TumblrClient.Core.Models.Posts;
 using Xamarin.Essentials;
 
 namespace TumblrClient.Core.ViewModels
 {
-    public class PostViewModel : MvxViewModel
+    public class PostViewModel<T> : MvxViewModel where T : BasePost
     {
-        public Post Post { get; set; }
+        public T Post { get; set; }
 
         public IMvxCommand ShareCommand => new MvxAsyncCommand(async () =>
         {
@@ -22,7 +22,7 @@ namespace TumblrClient.Core.ViewModels
         {
         });
 
-        public PostViewModel(Post post)
+        public PostViewModel(T post)
         {
             Post = post;
         }

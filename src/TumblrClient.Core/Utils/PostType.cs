@@ -1,3 +1,5 @@
+using System;
+
 namespace TumblrClient.Core.Utils
 {
     public enum PostType
@@ -28,6 +30,22 @@ namespace TumblrClient.Core.Utils
                 PostType.Photo => "photo",
                 PostType.Chat => "chat",
                 _ => string.Empty
+            };
+        }
+
+        public static PostType ToPostType(string name)
+        {
+            return name switch
+            {
+                "text" => PostType.Text,
+                "quote" => PostType.Quote,
+                "link" => PostType.Link,
+                "answer" => PostType.Answer,
+                "video" => PostType.Video,
+                "audio" => PostType.Audio,
+                "photo" => PostType.Photo,
+                "chat" => PostType.Chat,
+                _ => throw new NotImplementedException()
             };
         }
     }

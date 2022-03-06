@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
@@ -12,6 +11,7 @@ using MvvmCross.ViewModels;
 using Newtonsoft.Json;
 using Refit;
 using TumblrClient.Core.Infrastructure;
+using TumblrClient.Core.Utils;
 using TumblrClient.Core.ViewModels.Main;
 
 namespace TumblrClient.Core
@@ -20,7 +20,11 @@ namespace TumblrClient.Core
     {
         public override void Initialize()
         {
-            var contentSerializer = new NewtonsoftJsonContentSerializer();
+            var jsonSerializerSettings = new JsonSerializerSettings()
+            {
+                Converters = new[] { new PostsJsonConverter() }
+            };
+            var contentSerializer = new NewtonsoftJsonContentSerializer(jsonSerializerSettings);
             var refitSettings = new RefitSettings(contentSerializer);
             var httpClient = new HttpClient()
             {
@@ -51,14 +55,14 @@ namespace TumblrClient.Core
                 Debug.WriteLine($"{msg} {request.Method} {request.RequestUri.PathAndQuery} {request.RequestUri.Scheme}/{request.Version}");
                 Debug.WriteLine($"{msg} Host: {request.RequestUri.Scheme}://{request.RequestUri.Host}");
 
-                foreach (var header in request.Headers)
+                foreach(var header in request.Headers)
                 {
                     Debug.WriteLine($"{msg} {header.Key}: {string.Join(", ", header.Value)}");
                 }
 
-                if (request.Content != null)
+                if(request.Content != null)
                 {
-                    foreach (var header in request.Content.Headers)
+                    foreach(var header in request.Content.Headers)
                     {
                         Debug.WriteLine($"{msg} {header.Key}: {string.Join(", ", header.Value)}");
                     }
@@ -79,19 +83,19 @@ namespace TumblrClient.Core
                 msg = $"[{id} - Response]";
 
                 Debug.WriteLine($"{msg}=========Start=========");
-                Debug.WriteLine($"{msg} {request.RequestUri.Scheme.ToUpper()}/{response.Version} {(int)response.StatusCode} {response.ReasonPhrase}");
+                Debug.WriteLine($"{msg} {request.RequestUri.Scheme.ToUpper()}/{response.Version} {(int) response.StatusCode} {response.ReasonPhrase}");
 
-                foreach (var header in response.Headers)
+                foreach(var header in response.Headers)
                 {
                     Debug.WriteLine($"{msg} {header.Key}: {string.Join(", ", header.Value)}");
                 }
 
-                foreach (var header in response.Content.Headers)
+                foreach(var header in response.Content.Headers)
                 {
                     Debug.WriteLine($"{msg} {header.Key}: {string.Join(", ", header.Value)}");
                 }
 
-                if (response.Content is StringContent)
+                if(response.Content is StringContent)
                 {
                     start = DateTime.Now;
                     var result = await response.Content.ReadAsStringAsync();

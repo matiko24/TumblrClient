@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 
-namespace TumblrClient.Core.Models
+namespace TumblrClient.Core.Models.Posts
 {
-    public class Post
+    public abstract class BasePost
     {
         [JsonProperty("blog_name")]
         public string BlogName { get; set; }
@@ -10,16 +10,16 @@ namespace TumblrClient.Core.Models
         [JsonProperty("id")]
         public long Id { get; set; }
 
-        [JsonProperty("title")]
-        public string Title { get; set; }
-
-        [JsonProperty("body")]
-        public string Body { get; set; }
-
         [JsonProperty("post_url")]
         public string Url { get; set; }
 
         [JsonProperty("liked")]
         public bool Liked { get; set; }
+
+        [JsonProperty("date")]
+        public string Date { get; set; }
+
+        [JsonProperty("type")]
+        public string Type { get; set; }
     }
 }
