@@ -1,7 +1,6 @@
 using Cirrious.FluentLayouts.Touch;
 using MvvmCross.Platforms.Ios.Views;
 using MvvmCross.ViewModels;
-using TumblrClient.iOS.Styles;
 using UIKit;
 
 namespace TumblrClient.iOS.Views
@@ -15,28 +14,45 @@ namespace TumblrClient.iOS.Views
 
             View.BackgroundColor = UIColor.White;
 
-            if (NavigationController != null)
-            {
-                var appearance = new UINavigationBarAppearance
-                {
-                    BackgroundColor = UIColor.Clear,
-                    TitleTextAttributes = new UIStringAttributes
-                    {
-                        Font = UIFont.SystemFontOfSize(17, UIFontWeight.Semibold),
-                        ForegroundColor = UIColor.Black,
-                    }
-                };
-
-                appearance.ConfigureWithOpaqueBackground();
-
-                NavigationController.NavigationBar.StandardAppearance = appearance;
-                NavigationController.NavigationBar.ScrollEdgeAppearance = appearance;
-                NavigationController.NavigationBar.Translucent = false;
-            }
-
+            SetApperances();
+            AddTapRecognizer();
             CreateView();
             LayoutView();
             BindView();
+        }
+
+        private void AddTapRecognizer()
+        {
+            var tapRecognizer = new UITapGestureRecognizer(() => { View.EndEditing(true); })
+            {
+                CancelsTouchesInView = false
+            };
+
+            View.AddGestureRecognizer(tapRecognizer);
+        }
+
+        private void SetApperances()
+        {
+            if(NavigationController == null)
+            {
+                return;
+            }
+
+            var appearance = new UINavigationBarAppearance
+            {
+                BackgroundColor = UIColor.Clear,
+                TitleTextAttributes = new UIStringAttributes
+                {
+                    Font = UIFont.SystemFontOfSize(17, UIFontWeight.Semibold),
+                    ForegroundColor = UIColor.Black,
+                }
+            };
+
+            appearance.ConfigureWithOpaqueBackground();
+
+            NavigationController.NavigationBar.StandardAppearance = appearance;
+            NavigationController.NavigationBar.ScrollEdgeAppearance = appearance;
+            NavigationController.NavigationBar.Translucent = false;
         }
 
         public override void ViewWillAppear(bool animated)
