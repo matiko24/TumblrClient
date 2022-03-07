@@ -52,7 +52,9 @@ namespace TumblrClient.iOS.Sources
             }
             else if(postType == PostType.Photo)
             {
-                return 346;
+                var photoPostViewModel = postViewModel as PhotoPostViewModel;
+
+                return 146 + photoPostViewModel.Height/3;
             }
             else if(postType == PostType.Quote)
             {

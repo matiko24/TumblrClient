@@ -6,5 +6,8 @@ namespace TumblrClient.Core.Models
     {
         [JsonProperty("url")]
         public string Url { get; set; }
+
+        [JsonProperty("height")]
+        public int Height { get; set; }
     }
 }
