@@ -75,6 +75,7 @@
     <Compile Include="Views\MainActivity.cs" />
     <Compile Include="Views\SplashActivity.cs" />
     <Compile Include="Views\BlogActivity.cs" />
+    <Compile Include="Utils\PostTemplateSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions">
@@ -100,6 +101,12 @@
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
       <Version>8.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.DroidX.RecyclerView">
+      <Version>8.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading">
+      <Version>2.4.11.982</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +172,30 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_blog.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\item_text_post.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\item_link_post.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ic_heart.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ic_share.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\item_photo_post.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\item_quote_post.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

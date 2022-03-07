@@ -16,7 +16,7 @@ namespace TumblrClient.Core.ViewModels
 
         public string Title => _blogWithPosts.Blog.Name;
 
-        public MvxObservableCollection<PostViewModel> ItemsSource { get; set; }
+        public MvxObservableCollection<PostViewModel> Posts { get; set; }
 
         public BlogViewModel(IMvxNavigationService navigationService, IBlogService blogService)
         {
@@ -43,7 +43,7 @@ namespace TumblrClient.Core.ViewModels
                 postsViewModels.Add(postViewModel);
             }
 
-            ItemsSource = new MvxObservableCollection<PostViewModel>(postsViewModels);
+            Posts = new MvxObservableCollection<PostViewModel>(postsViewModels);
         }
 
         public void LoadMorePosts()

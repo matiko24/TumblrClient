@@ -24,7 +24,7 @@ namespace TumblrClient.iOS.Views
         {
             var set = this.CreateBindingSet<BlogView, BlogViewModel>();
 
-            set.Bind(_source).For(v => v.ItemsSource).To(vm => vm.ItemsSource);
+            set.Bind(_source).For(v => v.ItemsSource).To(vm => vm.Posts);
 
             set.Apply();
         }
