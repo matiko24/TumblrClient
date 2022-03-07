@@ -6,15 +6,40 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+    <FFImageLoading.Cross.MvxCachedImageView
+        android:id="@+id/iv_blog_activity_avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        app:MvxBind="ImagePath AvatarUrl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_blog_activity_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:MvxBind="Text Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_blog_activity_avatar" />
+
     <MvvmCross.DroidX.RecyclerView.MvxRecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:MvxBind="ItemsSource Posts;"
         app:MvxTemplateSelector="TumblrClient.Droid.Utils.PostTemplateSelector,TumblrClient.Droid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tv_blog_activity_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

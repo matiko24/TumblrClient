@@ -14,7 +14,9 @@ namespace TumblrClient.Core.ViewModels
         private IMvxNavigationService _navigationService;
         private BlogWithPosts _blogWithPosts;
 
-        public string Title => _blogWithPosts.Blog.Name;
+        public string Title => _blogWithPosts.Blog.Title;
+        public string Name => _blogWithPosts.Blog.Name;
+        public string AvatarUrl => _blogWithPosts.Blog.Avatars.ElementAt(0).Url;
 
         public MvxObservableCollection<PostViewModel> Posts { get; set; }
 

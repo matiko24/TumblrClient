@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
     <!-- Base theme applied regardless of API level -->
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="colorPrimary">@color/primaryColor</item>
@@ -10,6 +10,7 @@
         <item name="colorControlNormal">@color/primaryColor</item>
         <item name="colorControlActivated">@color/accentColor</item>
         <item name="colorControlHighlight">@color/accentColor</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
         <item name="windowActionModeOverlay">false</item>
     </style>
 
