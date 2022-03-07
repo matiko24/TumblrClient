@@ -16,10 +16,18 @@ namespace TumblrClient.iOS.Views
 		UIKit.UIButton NextButton { get; set; }
 
 		[Outlet]
+		UIKit.UIScrollView ScrollView { get; set; }
+
+		[Outlet]
 		UIKit.UITextField SearchingBlogName { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (ScrollView != null) {
+				ScrollView.Dispose ();
+				ScrollView = null;
+			}
+
 			if (NextButton != null) {
 				NextButton.Dispose ();
 				NextButton = null;
