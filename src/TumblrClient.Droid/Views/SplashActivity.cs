@@ -2,7 +2,7 @@
 using Android.App;
 using MvvmCross.Platforms.Android.Views;
 
-namespace TumblrClient.Droid.Views.Splash
+namespace TumblrClient.Droid.Views
 {
     [Activity(
         NoHistory = true,
