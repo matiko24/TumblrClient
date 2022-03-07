@@ -48,25 +48,25 @@ namespace TumblrClient.iOS.Sources
                 var textPostViewModel = postViewModel as TextPostViewModel;
                 var textheight = GetTextheight(textPostViewModel.Text);
 
-                return 90 + textheight;
+                return 146 + textheight;
             }
             else if(postType == PostType.Photo)
             {
-                return 400;
+                return 346;
             }
             else if(postType == PostType.Quote)
             {
                 var quotePostViewModel = postViewModel as QuotePostViewModel;
                 var textheight = GetTextheight(quotePostViewModel.Quote);
 
-                return 90 + textheight;
+                return 146 + textheight;
             }
             else if(postType == PostType.Link)
             {
                 var linkPostViewModel = postViewModel as LinkPostViewModel;
                 var textheight = GetTextheight(linkPostViewModel.LinkUrl);
 
-                return 90 + textheight;
+                return 140 + textheight;
             }
             else
             {

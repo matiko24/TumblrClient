@@ -12,6 +12,12 @@ namespace TumblrClient.iOS.Views.Cells
 	partial class PhotoPostViewCell
 	{
 		[Outlet]
+		FFImageLoading.Cross.MvxCachedImageView Avatar { get; set; }
+
+		[Outlet]
+		UIKit.UILabel BlogName { get; set; }
+
+		[Outlet]
 		UIKit.UIButton Like { get; set; }
 
 		[Outlet]
@@ -22,6 +28,16 @@ namespace TumblrClient.iOS.Views.Cells
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (BlogName != null) {
+				BlogName.Dispose ();
+				BlogName = null;
+			}
+
+			if (Avatar != null) {
+				Avatar.Dispose ();
+				Avatar = null;
+			}
+
 			if (Like != null) {
 				Like.Dispose ();
 				Like = null;

@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace TumblrClient.Core.Models
@@ -13,5 +13,8 @@ namespace TumblrClient.Core.Models
 
         [JsonProperty("description")]
         public string Description { get; set; }
+
+        [JsonProperty("avatar")]
+        public IEnumerable<Photo> Avatars { get; set; }
     }
 }

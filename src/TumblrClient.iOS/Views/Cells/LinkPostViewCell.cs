@@ -20,7 +20,10 @@ namespace TumblrClient.iOS.Views.Cells
             {
                 var set = this.CreateBindingSet<LinkPostViewCell, LinkPostViewModel>();
 
+                set.Bind(Avatar).For(v => v.ImagePath).To(vm => vm.AvatarUrl);
+                set.Bind(BlogName).For(v => v.Text).To(vm => vm.BlogName);
                 set.Bind(LinkButton).For("Title").To(vm => vm.LinkUrl);
+
                 set.Bind(LinkButton).To(vm => vm.OpenLinkCommand);
                 set.Bind(Share).To(vm => vm.ShareCommand);
 

@@ -9,7 +9,9 @@ namespace TumblrClient.Core.ViewModels.PostsViewModels
     public abstract class PostViewModel : MvxViewModel
     {
         public bool Liked { get; set; }
+        public string BlogName { get; private set; }
         public string Url { get; private set; }
+        public string AvatarUrl { get; set; }
         public PostType Type { get; private set; }
 
         public IMvxCommand ShareCommand => new MvxAsyncCommand(async () =>
@@ -28,6 +30,7 @@ namespace TumblrClient.Core.ViewModels.PostsViewModels
         public PostViewModel(Post post)
         {
             Url = post.Url;
+            BlogName = post.BlogName;
             Liked = post.Liked;
             Type = PostTypeExtension.ToPostType(post.Type);
         }

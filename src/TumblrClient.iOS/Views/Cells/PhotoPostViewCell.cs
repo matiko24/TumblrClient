@@ -20,6 +20,9 @@ namespace TumblrClient.iOS.Views.Cells
             {
                 var set = this.CreateBindingSet<PhotoPostViewCell, PhotoPostViewModel>();
 
+                set.Bind(Avatar).For(v => v.ImagePath).To(vm => vm.AvatarUrl);
+                set.Bind(BlogName).For(v => v.Text).To(vm => vm.BlogName);
+
                 set.Bind(Share).To(vm => vm.ShareCommand);
                 set.Bind(Photo).For(v => v.ImagePath).To(vm => vm.PhotoUrl);
 

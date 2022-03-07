@@ -3,8 +3,6 @@ using CoreAnimation;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Binding.Views;
-using TumblrClient.Core.Models.Posts;
-using TumblrClient.Core.ViewModels;
 using TumblrClient.Core.ViewModels.PostsViewModels;
 using UIKit;
 
@@ -21,6 +19,9 @@ namespace TumblrClient.iOS.Views.Cells
             this.DelayBind(() =>
             {
                 var set = this.CreateBindingSet<PostViewCell, TextPostViewModel>();
+
+                set.Bind(Avatar).For(v => v.ImagePath).To(vm => vm.AvatarUrl);
+                set.Bind(BlogName).For(v => v.Text).To(vm => vm.BlogName);
 
                 set.Bind(Text).For(v => v.Text).To(vm => vm.Text);
                 set.Bind(Share).To(vm => vm.ShareCommand);

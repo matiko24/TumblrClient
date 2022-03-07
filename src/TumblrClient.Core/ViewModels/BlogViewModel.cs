@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -26,8 +27,22 @@ namespace TumblrClient.Core.ViewModels
         public override void Prepare(BlogWithPosts parameter)
         {
             _blogWithPosts = parameter;
+            InitializeItems();
+        }
 
-            var postsViewModels = _blogWithPosts.Posts.Select(p => PostViewModelFactory.CreatePostViewModel(p));
+        private void InitializeItems()
+        {
+            var postsViewModels = new List<PostViewModel>();
+            var blogAvatarPhoto = _blogWithPosts.Blog.Avatars.ElementAt(0);
+
+            foreach(var post in _blogWithPosts.Posts)
+            {
+                var postViewModel = PostViewModelFactory.CreatePostViewModel(post);
+
+                postViewModel.AvatarUrl = blogAvatarPhoto.Url;
+                postsViewModels.Add(postViewModel);
+            }
+
             ItemsSource = new MvxObservableCollection<PostViewModel>(postsViewModels);
         }
 
