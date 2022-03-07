@@ -1,14 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
+using Android.Graphics;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
-using AndroidX.AppCompat.Widget;
+using Android.Views.InputMethods;
+using Android.Widget;
 using MvvmCross.Platforms.Android.Views;
 using MvvmCross.ViewModels;
 
@@ -24,6 +18,41 @@ namespace TumblrClient.Droid.Views
             base.OnCreate(bundle);
 
             SetContentView(ActivityLayoutId);
+        }
+
+        public override bool DispatchTouchEvent(MotionEvent ev)
+        {
+            if(ev.Action == MotionEventActions.Down)
+            {
+                var view = CurrentFocus;
+
+                if(view is EditText)
+                {
+                    var outRect = new Rect();
+
+                    view.GetGlobalVisibleRect(outRect);
+
+                    if(!outRect.Contains((int) ev.RawX, (int) ev.RawY))
+                    {
+                        HideKeyboard();
+                    }
+                }
+            }
+
+            return base.DispatchTouchEvent(ev);
+        }
+
+        private void HideKeyboard()
+        {
+            if(CurrentFocus == null)
+            {
+                return;
+            }
+
+            var inputMethodManager = (InputMethodManager) GetSystemService(InputMethodService);
+
+            inputMethodManager.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
+            CurrentFocus.ClearFocus();
         }
     }
 }
