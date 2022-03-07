@@ -17,23 +17,12 @@ namespace TumblrClient.Core.Utils
             JObject jObject = JObject.Load(reader);
             var type = jObject.GetValue("type");
             var postType = PostTypeExtension.ToPostType(type.ToString());
+            var post = PostFactory.CretePost(postType);
 
-            Post postObject = postType switch
-            {
-                PostType.Text => new TextPost(),
-                PostType.Link => new LinkPost(),
-                PostType.Quote => new QuotePost(),
-                PostType.Chat => new ChatPost(),
-                PostType.Audio => new AudioPost(),
-                PostType.Photo => new PhotoPost(),
-                PostType.Video => new VideoPost(),
-                PostType.Answer => new AnswerPost(),
-                _ => throw new NotImplementedException()
-            };
+            serializer.Populate(jObject.CreateReader(), post);
+            post.Type = postType;
 
-            serializer.Populate(jObject.CreateReader(), postObject);
-
-            return postObject;
+            return post;
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

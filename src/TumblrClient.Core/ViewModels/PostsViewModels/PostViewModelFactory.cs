@@ -8,7 +8,7 @@ namespace TumblrClient.Core.ViewModels.PostsViewModels
     {
         public static PostViewModel CreatePostViewModel(Post post)
         {
-            return PostTypeExtension.ToPostType(post.Type) switch
+            return post.Type switch
             {
                 PostType.Link => new LinkPostViewModel((LinkPost) post),
                 PostType.Quote => new QuotePostViewModel((QuotePost) post),
@@ -18,7 +18,7 @@ namespace TumblrClient.Core.ViewModels.PostsViewModels
                 PostType.Video => new ViedeoPostViewModel(post),
                 PostType.Chat => new ChatPostViewModel(post),
                 PostType.Audio => new AudioPostViewModel(post),
-                _ => throw new InvalidOperationException("Can't create model for such type")
+                _ => throw new InvalidOperationException("Can't create model for this post type")
             };
         }
     }

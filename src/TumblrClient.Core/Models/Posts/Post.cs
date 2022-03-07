@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using TumblrClient.Core.Utils;
 
 namespace TumblrClient.Core.Models.Posts
 {
@@ -20,6 +21,6 @@ namespace TumblrClient.Core.Models.Posts
         public string Date { get; set; }
 
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public PostType Type { get; set; }
     }
 }

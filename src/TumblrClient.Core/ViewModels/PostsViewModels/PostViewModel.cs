@@ -32,7 +32,7 @@ namespace TumblrClient.Core.ViewModels.PostsViewModels
             Url = post.Url;
             BlogName = post.BlogName;
             Liked = post.Liked;
-            Type = PostTypeExtension.ToPostType(post.Type);
+            Type = post.Type;
         }
     }
 }
