@@ -12,10 +12,6 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <include
-            android:id="@+id/layout_toolbar"
-            layout="@layout/layout_toolbar" />
-
         <FrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"

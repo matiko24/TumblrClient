@@ -1,14 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using MvvmCross.Platforms.Android.Views;
 
 namespace TumblrClient.Droid.Views.Splash
@@ -17,9 +8,7 @@ namespace TumblrClient.Droid.Views.Splash
         NoHistory = true,
         MainLauncher = true,
         Label = "@string/app_name",
-        Theme = "@style/AppTheme.Splash",
-        Icon = "@mipmap/ic_launcher",
-        RoundIcon = "@mipmap/ic_launcher_round")]
+        Theme = "@style/AppTheme.Splash")]
     public class SplashActivity : MvxSplashScreenActivity
     {
     }

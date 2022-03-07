@@ -19,17 +19,11 @@ namespace TumblrClient.Droid.Views
     {
         protected abstract int ActivityLayoutId { get; }
 
-        protected Toolbar Toolbar { get; private set; }
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
             SetContentView(ActivityLayoutId);
-
-            Toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-
-            SetSupportActionBar(Toolbar);
         }
     }
 }
