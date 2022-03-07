@@ -13,7 +13,7 @@ namespace TumblrClient.iOS.Sources
     {
         public PostsSource(UITableView tableView) : base(tableView)
         {
-            tableView.RegisterNibForCellReuse(PostViewCell.Nib, PostViewCell.Key);
+            tableView.RegisterNibForCellReuse(TextPostViewCell.Nib, TextPostViewCell.Key);
             tableView.RegisterNibForCellReuse(PhotoPostViewCell.Nib, PhotoPostViewCell.Key);
             tableView.RegisterNibForCellReuse(QuotePostViewCell.Nib, QuotePostViewCell.Key);
             tableView.RegisterNibForCellReuse(LinkPostViewCell.Nib, LinkPostViewCell.Key);
@@ -24,7 +24,7 @@ namespace TumblrClient.iOS.Sources
             var postViewModel = GetItemAt(indexPath) as PostViewModel;
             var cellIdentifier = postViewModel.Type switch
             {
-                PostType.Text => PostViewCell.Key,
+                PostType.Text => TextPostViewCell.Key,
                 PostType.Quote => QuotePostViewCell.Key,
                 PostType.Link => LinkPostViewCell.Key,
                 PostType.Answer => "answer",
@@ -54,7 +54,7 @@ namespace TumblrClient.iOS.Sources
             {
                 var photoPostViewModel = postViewModel as PhotoPostViewModel;
 
-                return 146 + photoPostViewModel.Height/3;
+                return 146 + photoPostViewModel.Height / 3;
             }
             else if(postType == PostType.Quote)
             {

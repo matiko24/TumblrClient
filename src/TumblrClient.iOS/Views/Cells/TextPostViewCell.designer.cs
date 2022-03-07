@@ -9,7 +9,7 @@ using System.CodeDom.Compiler;
 
 namespace TumblrClient.iOS.Views.Cells
 {
-	partial class PostViewCell
+	partial class TextPostViewCell
 	{
 		[Outlet]
 		FFImageLoading.Cross.MvxCachedImageView Avatar { get; set; }

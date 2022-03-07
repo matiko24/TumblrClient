@@ -151,10 +151,6 @@
       <DependentUpon>BlogView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Cells\PostViewCell.cs" />
-    <InterfaceDefinition Include="Views\Cells\PostViewCell.xib" />
-    <Compile Include="Views\Cells\PostViewCell.designer.cs">
-      <DependentUpon>Views\Cells\PostViewCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Sources\PostsSource.cs" />
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\1024.png" />
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\76.png" />
@@ -191,6 +187,11 @@
     <InterfaceDefinition Include="Views\Cells\LinkPostViewCell.xib" />
     <Compile Include="Views\Cells\LinkPostViewCell.designer.cs">
       <DependentUpon>Views\Cells\LinkPostViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cells\TextPostViewCell.cs" />
+    <InterfaceDefinition Include="Views\Cells\TextPostViewCell.xib" />
+    <Compile Include="Views\Cells\TextPostViewCell.designer.cs">
+      <DependentUpon>Views\Cells\TextPostViewCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

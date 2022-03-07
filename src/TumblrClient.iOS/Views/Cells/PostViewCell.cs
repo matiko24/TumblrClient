@@ -1,43 +1,29 @@
 using System;
 using CoreAnimation;
 using Foundation;
-using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Binding.Views;
 using TumblrClient.Core.ViewModels.PostsViewModels;
 using UIKit;
 
 namespace TumblrClient.iOS.Views.Cells
 {
-    [Register("PostViewCell")]
-    public partial class PostViewCell : MvxTableViewCell
+    public abstract class PostViewCell : MvxTableViewCell
     {
-        public static readonly NSString Key = new NSString("PostViewCell");
-        public static readonly UINib Nib = UINib.FromName("PostViewCell", NSBundle.MainBundle);
+        public abstract UIButton ShareButton { get; }
+        public abstract UIButton LikeButton { get; }
 
         public PostViewCell(IntPtr intPtr) : base(intPtr)
         {
-            this.DelayBind(() =>
-            {
-                var set = this.CreateBindingSet<PostViewCell, TextPostViewModel>();
-
-                set.Bind(Avatar).For(v => v.ImagePath).To(vm => vm.AvatarUrl);
-                set.Bind(BlogName).For(v => v.Text).To(vm => vm.BlogName);
-
-                set.Bind(Text).For(v => v.Text).To(vm => vm.Text);
-                set.Bind(Share).To(vm => vm.ShareCommand);
-
-                set.Apply();
-            });
         }
 
         public override void AwakeFromNib()
         {
             base.AwakeFromNib();
 
-            Share.SetTitle(string.Empty, UIControlState.Normal);
-            Like.SetTitle(string.Empty, UIControlState.Normal);
+            ShareButton.SetTitle(string.Empty, UIControlState.Normal);
+            LikeButton.SetTitle(string.Empty, UIControlState.Normal);
 
-            Like.TouchUpInside += Like_TouchUpInside;
+            LikeButton.TouchUpInside += Like_TouchUpInside;
         }
 
         private void Like_TouchUpInside(object sender, EventArgs e)
@@ -55,10 +41,10 @@ namespace TumblrClient.iOS.Views.Cells
                 var postViewModel = DataContext as PostViewModel;
 
                 postViewModel.Liked = !postViewModel.Liked;
-                Like.TintColor = postViewModel.Liked ? UIColor.Red : UIColor.DarkGray;
+                LikeButton.TintColor = postViewModel.Liked ? UIColor.Red : UIColor.DarkGray;
             };
 
-            Like.Layer.AddAnimation(animation, "pulse");
+            LikeButton.Layer.AddAnimation(animation, "pulse");
         }
     }
 }
