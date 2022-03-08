@@ -1,5 +1,4 @@
-﻿using System;
-using MvvmCross.DroidX.RecyclerView.ItemTemplates;
+﻿using MvvmCross.DroidX.RecyclerView.ItemTemplates;
 using TumblrClient.Core.Utils;
 using TumblrClient.Core.ViewModels.PostsViewModels;
 
@@ -20,7 +19,7 @@ namespace TumblrClient.Droid.Utils
                 PostType.Link => Resource.Layout.item_link_post,
                 PostType.Quote => Resource.Layout.item_quote_post,
                 PostType.Photo => Resource.Layout.item_photo_post,
-                _ => throw new NotImplementedException()
+                _ => Resource.Layout.item_unsupported_post_type
             };
         }
     }

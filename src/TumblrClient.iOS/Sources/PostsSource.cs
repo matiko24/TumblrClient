@@ -17,6 +17,7 @@ namespace TumblrClient.iOS.Sources
             tableView.RegisterNibForCellReuse(PhotoPostViewCell.Nib, PhotoPostViewCell.Key);
             tableView.RegisterNibForCellReuse(QuotePostViewCell.Nib, QuotePostViewCell.Key);
             tableView.RegisterNibForCellReuse(LinkPostViewCell.Nib, LinkPostViewCell.Key);
+            tableView.RegisterNibForCellReuse(UnsupportedPostTypeViewCell.Nib, UnsupportedPostTypeViewCell.Key);
         }
 
         protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
@@ -27,11 +28,11 @@ namespace TumblrClient.iOS.Sources
                 PostType.Text => TextPostViewCell.Key,
                 PostType.Quote => QuotePostViewCell.Key,
                 PostType.Link => LinkPostViewCell.Key,
-                PostType.Answer => "answer",
-                PostType.Video => "video",
-                PostType.Audio => "audio",
+                PostType.Answer => UnsupportedPostTypeViewCell.Key,
+                PostType.Video => UnsupportedPostTypeViewCell.Key,
+                PostType.Audio => UnsupportedPostTypeViewCell.Key,
                 PostType.Photo => PhotoPostViewCell.Key,
-                PostType.Chat => "chat",
+                PostType.Chat => UnsupportedPostTypeViewCell.Key,
                 _ => string.Empty
             };
 

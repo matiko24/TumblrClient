@@ -198,6 +198,11 @@
     <Compile Include="Views\FiltersView.designer.cs">
       <DependentUpon>FiltersView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Cells\UnsupportedPostTypeViewCell.cs" />
+    <InterfaceDefinition Include="Views\Cells\UnsupportedPostTypeViewCell.xib" />
+    <Compile Include="Views\Cells\UnsupportedPostTypeViewCell.designer.cs">
+      <DependentUpon>Views\Cells\UnsupportedPostTypeViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
