@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using TumblrClient.Core.Infrastructure;
 using TumblrClient.Core.Models;
+using TumblrClient.Core.Utils;
 using TumblrClient.Core.ViewModels.PostsViewModels;
 
 namespace TumblrClient.Core.ViewModels
@@ -12,6 +15,7 @@ namespace TumblrClient.Core.ViewModels
     {
         private IBlogService _blogService;
         private IMvxNavigationService _navigationService;
+        private IAppDialogs _appDialogs;
         private BlogWithPosts _blogWithPosts;
 
         public string Title => _blogWithPosts.Blog.Title;
@@ -20,19 +24,37 @@ namespace TumblrClient.Core.ViewModels
 
         public MvxObservableCollection<PostViewModel> Posts { get; set; }
 
-        public BlogViewModel(IMvxNavigationService navigationService, IBlogService blogService)
+        public IMvxAsyncCommand OpenFiltersCommand => new MvxAsyncCommand(async () =>
+        {
+            var postsFilters = new PostsFilters()
+            {
+                BlogIdentifier = Name
+            };
+            var result = await _navigationService.Navigate<FiltersViewModel, PostsFilters, ViewModelResult<bool>>(postsFilters);
+
+            if(result == null || !result.Value)
+            {
+                return;
+            }
+
+            await ReloadPosts(postsFilters);
+        });
+
+        public BlogViewModel(IMvxNavigationService navigationService, IBlogService blogService, IAppDialogs appDialogs)
         {
             _navigationService = navigationService;
             _blogService = blogService;
+            _appDialogs = appDialogs;
         }
 
         public override void Prepare(BlogWithPosts parameter)
         {
             _blogWithPosts = parameter;
-            InitializeItems();
+            Posts = new MvxObservableCollection<PostViewModel>();
+            InitializePosts();
         }
 
-        private void InitializeItems()
+        private void InitializePosts()
         {
             var postsViewModels = new List<PostViewModel>();
             var blogAvatarPhoto = _blogWithPosts.Blog.Avatars.ElementAt(0);
@@ -45,7 +67,23 @@ namespace TumblrClient.Core.ViewModels
                 postsViewModels.Add(postViewModel);
             }
 
-            Posts = new MvxObservableCollection<PostViewModel>(postsViewModels);
+            Posts.Clear();
+            Posts.AddRange(postsViewModels);
+        }
+
+        private async Task ReloadPosts(PostsFilters postsFilters)
+        {
+            _appDialogs.ShowLoading();
+            var newBlogWithPosts = await _blogService.GetPosts(postsFilters);
+            _appDialogs.HideLoading();
+
+            if(newBlogWithPosts == null)
+            {
+                _appDialogs.ShowToast("Coś poszło nie tak :( Spróbuj ponownie");
+            }
+
+            _blogWithPosts = newBlogWithPosts;
+            InitializePosts();
         }
 
         public void LoadMorePosts()

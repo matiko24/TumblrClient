@@ -15,6 +15,7 @@ namespace TumblrClient.iOS.Views
         {
             Title = ViewModel.Title;
             NavigationItem.LeftBarButtonItem = new UIBarButtonItem("Zamknij", UIBarButtonItemStyle.Done, (s, e) => { ViewModel.Close(); });
+            NavigationItem.RightBarButtonItem = new UIBarButtonItem("Filtruj", UIBarButtonItemStyle.Plain, (s, e) => { ViewModel.OpenFiltersCommand.Execute(); });
 
             _source = new PostsSource(TableView);
             TableView.Source = _source;

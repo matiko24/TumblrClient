@@ -193,6 +193,11 @@
     <Compile Include="Views\Cells\TextPostViewCell.designer.cs">
       <DependentUpon>Views\Cells\TextPostViewCell.cs</DependentUpon>
     </Compile>
+    <InterfaceDefinition Include="Views\FiltersView.xib" />
+    <Compile Include="Views\FiltersView.cs" />
+    <Compile Include="Views\FiltersView.designer.cs">
+      <DependentUpon>FiltersView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

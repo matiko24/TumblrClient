@@ -6,7 +6,7 @@ namespace TumblrClient.Core.Infrastructure
     {
         Task ShowAlert(string message);
         void ShowToast(string message);
-        void ShowLoading(string text);
+        void ShowLoading(string text = "");
         void HideLoading();
     }
 }

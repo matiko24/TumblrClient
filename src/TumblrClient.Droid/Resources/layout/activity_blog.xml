@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_blog_activity_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_height="56dp"/>
+
     <FFImageLoading.Cross.MvxCachedImageView
         android:id="@+id/iv_blog_activity_avatar"
         android:layout_width="40dp"
@@ -14,7 +23,7 @@
         app:MvxBind="ImagePath AvatarUrl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tb_blog_activity_toolbar" />
 
     <TextView
         android:id="@+id/tv_blog_activity_name"
@@ -41,5 +50,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_blog_activity_name" />
+
+    <FrameLayout
+        android:id="@+id/lyt_blog_activity_content_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
